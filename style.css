@@ -1,0 +1,19 @@
+html {
+    background-color: black;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+    height: 100vh;
+}
+
+#update {
+    margin-top: 20px; 
+    margin-bottom: 10px;
+    color: white;
+}
