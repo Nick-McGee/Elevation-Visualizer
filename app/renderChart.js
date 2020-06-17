@@ -1,3 +1,4 @@
+// Store all datapoints
 var elevationPoints = [];
 
 var chart = new CanvasJS.Chart("chart", {
@@ -22,6 +23,10 @@ var chart = new CanvasJS.Chart("chart", {
     data: []
 });
 
+/*
+Contains all properties needed to create a new line
+Pushes JSON array elevationPoints onto 'data' in chart
+*/
 function createNewLine(elevationPoints) {
     var newLine = {
         type: "splineArea",

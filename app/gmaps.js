@@ -94,6 +94,10 @@ var paths = [
     ]
 ]
 
+/*
+Calls the Google Maps Elevation Service API
+Makes a callback on each path to showElevation
+*/
 function getElevationData() {
     var gmapsElevation = new google.maps.ElevationService;
 
@@ -104,6 +108,10 @@ function getElevationData() {
     );
 }
 
+/*
+Calls createNewLine with elevation data from getElevationData if response is 'OK'
+Creates spacing between each line, and renders chart
+*/
 count = 0;
 function showElevation(elevationData, status) {
     if (status !== 'OK')
@@ -112,9 +120,12 @@ function showElevation(elevationData, status) {
         console.log('Request: ' + status);
 
         var elevationPoints = []
+        // Create an array of JSON objects from elevationData and put into elevationPoints
         elevationData.forEach((sample) => elevationPoints.push({y: sample.elevation - count}));
+        // Pass array of JSON objects of into createNewLine to create a new line
         createNewLine(elevationPoints);
 
+        // Spacing between lines
         count += 800;
     }
     chart.render();
