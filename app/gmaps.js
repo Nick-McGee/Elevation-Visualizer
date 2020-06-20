@@ -1,11 +1,41 @@
 // Create HTML tag, used for hiding API key
 var script = document.createElement('script');
-script.src = 'https://maps.googleapis.com/maps/api/js?key=' + config.API_KEY + '&callback=getElevationData';
+script.src = 'https://maps.googleapis.com/maps/api/js?key=' + config.API_KEY + '&callback=initMap';
 script.defer = true;
 script.async = true;
 
 // Append the 'script' element to 'head'
 document.head.appendChild(script);
+
+// This example adds a user-editable rectangle to the map.
+function initMap() {
+    console.log("Made map");
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 44.5452, lng: -78.5389},
+        zoom: 8,
+        mapTypeId: 'terrain',
+        mapTypeControl: false,
+        streetViewControl: false
+    });
+
+    var bounds = {
+        north: 44.599,
+        south: 44.490,
+        east: -78.443,
+        west: -78.649
+    };
+
+    // Define a rectangle and set its editable property to true.
+    var rectangle = new google.maps.Rectangle({
+        bounds: bounds,
+        editable: true,
+        draggable: true
+    });
+    rectangle.setMap(map);
+
+    getElevationData();
+}
 
 var paths = [
     [
